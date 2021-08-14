@@ -79,7 +79,6 @@ def check_for_winning_throw(player_1, player_2, roll1, roll2):
         return player_1
     elif roll2 in outcome.get('defeated_by'):
         return player_2
-
     return winner
 
 
