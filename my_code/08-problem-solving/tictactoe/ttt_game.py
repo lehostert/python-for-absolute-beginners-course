@@ -7,7 +7,7 @@ print("Welcome to Play Tic Tac Toe")
 # Choose Initial Player
 # Until someone wins, check for winner
 #   show the board
-#   Get Moves from players, check validity of move, mark it
+#   Get Moves from players (choose a location), check validity of move, mark it
 #   Change active player
 # Game Over
 
@@ -41,10 +41,31 @@ def main():
     while not find_winner(board):
         # SHOW THE BOARD
         player = players[active_player_index]
+        symbol = symbols[active_player_index]
 
         announce_turn(player)
         show_board(board)
-        input("paused")
+        if not choose_location(board, symbol):
+            print("That isn't an option, try again.")
+            continue
+
+def choose_location(board, symbol):
+    row = int(input("Choose which row:"))
+    column = int(input("Choose which column:"))
+
+    row -= 1
+    column -= 1
+    if row <0 or row >= len(board):
+        return False
+    if column <0 or column >= len(board[0]):
+        return False
+
+    cell = board[row][column]
+    if cell is not None:
+        return False
+
+    board[row][column] = symbol
+    return True
 
 def show_board(board):
     for row in board:
