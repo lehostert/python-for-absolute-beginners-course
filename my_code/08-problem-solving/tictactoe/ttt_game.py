@@ -92,16 +92,10 @@ def find_winner(board):
     rows = board
     for row in rows:
         symbol1 = row[0]
-        if not symbol1: # if there is no symbol then do next if there is a symbol this is FALSE & you exit the loop
-            continue # if there is no symbol continue running this loop or continue script with win by columns
+        if symbol1 and all(symbol1 == cell for cell in row):  # if this does not happen it will continue to WBC
+            return True
 
-        for cell in row:
-            if cell != symbol1:
-                continue
-
-        return True
-
-    # Win by columns
+    # Win by columns WBC
     columns = []
     for col_index in range(0,3):  # start in inclusive while stop is exclusive in range function
         col= [
@@ -109,11 +103,24 @@ def find_winner(board):
             board[1][col_index],
             board[2][col_index],
         ]
-    # Win by diagonals
+        columns.append(col)
+
+    for col in columns:
+        symbol1 = col[0]
+        if symbol1 and all(symbol1 == cell for cell in col):  # if this does not happen it will continue to WBD
+            return True
+
+
+    # Win by diagonals WBD
     diagonals = [
-        board[0][0],board[1][1],board[2][2],
-        board[0][2],board[1][1],board[2][0]
+        [board[0][0],board[1][1],board[2][2]],
+        [board[0][2],board[1][1],board[2][0]]
     ]
+    for diag in diagonals:
+        symbol1 = diag[0]
+        if symbol1 and all(symbol1 == cell for cell in diag):  # if this does not happen it will continue to WBD
+            return True
+
     return False
 
 if __name__ == '__main__':
