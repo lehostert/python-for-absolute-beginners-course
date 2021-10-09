@@ -52,8 +52,10 @@ def main():
 
         # Toggle Active Player
         active_player_index = (active_player_index + 1) % len(players)
-    print(f"Game over {player} has won!")
+    print()
+    print(f"Congratulations, {player} has won the game!")
     show_board(board)
+    print()
 
 
 def choose_location(board, symbol):
