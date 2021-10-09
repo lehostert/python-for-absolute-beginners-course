@@ -36,6 +36,7 @@ def main():
     p1 = input("Enter player 1's name: ")
     players = [p1, "Computer"]
     symbols = ["X", "0"]
+    player = players[active_player_index]
 
     # UNTIL SOMEONE WINS
     while not find_winner(board):
@@ -48,6 +49,11 @@ def main():
         if not choose_location(board, symbol):
             print("That isn't an option, try again.")
             continue
+
+        # Toggle Active Player
+        active_player_index = (active_player_index + 1) % len(players)
+    print(f"Game over {player} has won!")
+    show_board(board)
 
 def choose_location(board, symbol):
     row = int(input("Choose which row:"))
@@ -82,6 +88,32 @@ def announce_turn(player):
 
 def find_winner(board):
     # TODO: implement how we check for a winner
+    # Win by rows
+    rows = board
+    for row in rows:
+        symbol1 = row[0]
+        if not symbol1: # if there is no symbol then do next if there is a symbol this is FALSE & you exit the loop
+            continue # if there is no symbol continue running this loop or continue script with win by columns
+
+        for cell in row:
+            if cell != symbol1:
+                continue
+
+        return True
+
+    # Win by columns
+    columns = []
+    for col_index in range(0,3):  # start in inclusive while stop is exclusive in range function
+        col= [
+            board[0][col_index],
+            board[1][col_index],
+            board[2][col_index],
+        ]
+    # Win by diagonals
+    diagonals = [
+        board[0][0],board[1][1],board[2][2],
+        board[0][2],board[1][1],board[2][0]
+    ]
     return False
 
 if __name__ == '__main__':
