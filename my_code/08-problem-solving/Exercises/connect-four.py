@@ -1,9 +1,9 @@
 ### Connect Four the Game 
 print()
-print("~~~~~~~~~~~~~~~~~~~~~~~")
-print("Welcome to Connect Four")
-print("~~~~~~~~~~~~~~~~~~~~~~~")
-# TODO: 
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print(" Welcome to Connect Four ")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+# TODO: Check for winner
 
 # Create the board
 # Establish Players
