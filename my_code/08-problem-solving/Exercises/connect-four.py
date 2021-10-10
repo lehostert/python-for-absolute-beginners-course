@@ -1,7 +1,8 @@
 ### Connect Four the Game 
-
+print()
+print("~~~~~~~~~~~~~~~~~~~~~~~")
 print("Welcome to Connect Four")
-
+print("~~~~~~~~~~~~~~~~~~~~~~~")
 # TODO: 
 
 # Create the board
@@ -69,7 +70,7 @@ def main():
 
 
 def choose_location(board, symbol):
-    row = 0 
+    row = 5 
     column = int(input("Choose which column:"))
     column -= 1
     if column <0 or column >= len(board[0]):
@@ -78,20 +79,17 @@ def choose_location(board, symbol):
     cell = board[row][column]
 
     if cell is not None:
-        row += 1
+        row -= 1
         cell = board[row][column]
-        if row >6:
+        if row <0:
             return False
     
-
     board[row][column] = symbol
     return True
 
 
 def show_board(board):
-    display_board = board[::-1]
-    for row in display_board:
-        #row.reverse()
+    for row in board:
         print("| ", end='')
         for cell in row:
             symbol = cell if cell is not None else "_"
