@@ -75,39 +75,23 @@ def choose_location(board, symbol):
     if column <0 or column >= len(board[0]):
         return False
 
-# TODO: try to get the rows to fill up for connect-four
-
-### ATTEMPT 1
-    # for row_index in range(0,7):
-    #     row = row_index
-    #     cell = board[row_index][column]
-        
-    #     if cell is None: 
-    #         return row
-    #     return False
-
-#### ATTEMPT 2
     cell = board[row][column]
 
-    while row <=6:
-        if cell is None:
-            return row
-        elif cell is not None:
-            row += 1
-            cell = board[row][column]
-    return False
-    # Testing if there is something in the cell and if not continue if there is move to next row
-
-    # if row <0 or row >= len(board):
-    #     return False
+    if cell is not None:
+        row += 1
+        cell = board[row][column]
+        if row >6:
+            return False
+    
 
     board[row][column] = symbol
-    # cell = symbol
     return True
 
 
 def show_board(board):
-    for row in board:
+    display_board = board[::-1]
+    for row in display_board:
+        #row.reverse()
         print("| ", end='')
         for cell in row:
             symbol = cell if cell is not None else "_"
