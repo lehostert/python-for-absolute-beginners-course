@@ -3,6 +3,7 @@ print()
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print(" Welcome to Connect Four ")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+# TODO: Add winning diagonal sequences
 # TODO: Check for winner
 
 # Create the board
@@ -78,7 +79,7 @@ def choose_location(board, symbol):
 
     cell = board[row][column]
 
-    if cell is not None:
+    while cell is not None:
         row -= 1
         cell = board[row][column]
         if row <0:
@@ -116,18 +117,70 @@ def find_winner(board):
 def get_winning_sequences(board):
     sequences = []
 
-    # Win by rows
-    rows = board
-    sequences.extend(rows)
+    # Win by row C4
+    for row_index in range(0, 6):  # start in inclusive while stop is exclusive in range function
+        row1 = [
+            board[row_index][0],
+            board[row_index][1],
+            board[row_index][2],
+            board[row_index][3],
+        ]
+        sequences.append(row1)
 
-    # Win by columns
-    for col_index in range(0, 3):  # start in inclusive while stop is exclusive in range function
-        col = [
+    for row_index in range(0, 6):  # start in inclusive while stop is exclusive in range function
+        row2 = [
+            board[row_index][1],
+            board[row_index][2],
+            board[row_index][3],
+            board[row_index][4],
+        ]
+        sequences.append(row2)
+
+    for row_index in range(0, 6):  # start in inclusive while stop is exclusive in range function
+        row3 = [
+            board[row_index][2],
+            board[row_index][3],
+            board[row_index][4],
+            board[row_index][5],
+        ]
+        sequences.append(row3)
+
+    for row_index in range(0, 6):  # start in inclusive while stop is exclusive in range function
+        row4 = [
+            board[row_index][3],
+            board[row_index][4],
+            board[row_index][5],
+            board[row_index][6],
+        ]
+        sequences.append(row4)
+
+    # Win by columns C4
+    for col_index in range(0, 7):  # start in inclusive while stop is exclusive in range function
+        col1 = [
             board[0][col_index],
             board[1][col_index],
             board[2][col_index],
+            board[3][col_index],
         ]
-        sequences.append(col)
+        sequences.append(col1)
+
+    for col_index in range(0, 7):  # start in inclusive while stop is exclusive in range function
+        col2 = [
+            board[1][col_index],
+            board[2][col_index],
+            board[3][col_index],
+            board[4][col_index],
+        ]
+        sequences.append(col2)
+
+    for col_index in range(0, 7):  # start in inclusive while stop is exclusive in range function
+        col3 = [
+            board[2][col_index],
+            board[3][col_index],
+            board[4][col_index],
+            board[5][col_index],
+        ]
+        sequences.append(col3)
 
     #Win by diagonals
     diagonals = [
