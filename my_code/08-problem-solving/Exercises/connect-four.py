@@ -3,8 +3,9 @@ print()
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 print(" Welcome to Connect Four ")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-# TODO: Add winning diagonal sequences
-# TODO: Check for winner
+# TODO: Review lines 185- 192 for why they cause a special break
+# TODO: Add diagonals for up-to-down direction.
+# TODO: Add random number generator for computer plays
 
 # Create the board
 # Establish Players
@@ -183,9 +184,32 @@ def get_winning_sequences(board):
         sequences.append(col3)
 
     #Win by diagonals
+    # TODO: Why doesn't this work? It causing code to break with a winner after inputing someones name but no play
+    # for diag_index in range(0, 4):  # start in inclusive while stop is exclusive in range function
+    #     diag= [
+    #         [board[3][diag_index], board[2][diag_index + 1], board[1][diag_index + 2], board[0][diag_index + 3]],
+    #         [board[4][diag_index], board[3][diag_index + 1], board[2][diag_index + 2], board[1][diag_index + 3]],
+    #         [board[5][diag_index], board[4][diag_index + 1], board[3][diag_index + 2], board[2][diag_index + 3]]
+    #     ]
+    #     sequences.append(diag)
+
+
     diagonals = [
-        [board[0][0],board[1][1],board[2][2]],
-        [board[0][2],board[1][1],board[2][0]]
+        [board[3][0],board[2][1],board[1][2],board[0][3]],
+        [board[4][0],board[3][1],board[2][2],board[1][3]],
+        [board[5][0],board[4][1],board[3][2],board[2][3]],
+
+        [board[3][1], board[2][2], board[1][3], board[0][4]],
+        [board[4][1], board[3][2], board[2][3], board[1][4]],
+        [board[5][1], board[4][2], board[3][3], board[2][4]],
+
+        [board[3][2], board[2][3], board[1][4], board[0][5]],
+        [board[4][2], board[3][3], board[2][4], board[1][5]],
+        [board[5][2], board[4][3], board[3][4], board[2][5]],
+
+        [board[3][3], board[2][4], board[1][5], board[0][6]],
+        [board[4][3], board[3][4], board[2][5], board[1][6]],
+        [board[5][3], board[4][4], board[3][5], board[2][6]],
     ]
     sequences.extend(diagonals)
     return sequences
